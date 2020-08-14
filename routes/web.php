@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -12,7 +13,20 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Auth::routes(['verify' => true]);
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('index');
 });
+
+Route::get('/home', 'HomeController@index')->name('home')->middleware('verified');
+
+//----User profile----
+Route::get('/profile', 'UserProfileController@index')->name('users.profile')->middleware('auth');
+Route::get('/profile/{user:name}', 'UserProfileController@show')->name('users.show');
+//--------------------
+Route::group(['middleware' => ['auth','verified'],'prefix' => 'admin', 'namespace' => 'Admin','as'=>'admin.'], function () {
+    Route::get('/', 'PanelController@index')->name('panel')
+    ;
+});
+

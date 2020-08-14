@@ -1,0 +1,16 @@
+#header {
+    height: 237px;
+    padding-top: 10px;
+    background-color: #00728f;
+
+    h1 span {
+        color: white;
+    }
+}
+
+#navbar-top, #navbar-side {
+    .nav-item .nav-link {
+        padding-top: 0 !important;
+        padding-bottom: 0 !important;
+    }
+}
