@@ -16,16 +16,12 @@ class UserProfileController extends Controller
      */
     public function index()
     {
-        $this->title = __('site.title_profile');
-
-        $title = $this->title;
-        $auth_user = Auth::user();
-
-        return dump($auth_user->profile);
+        return view('user.profile', ['user' => Auth::user()]);
     }
+
     public function show(User $user)
     {
-        return $user->profile;
+        return $user->userProfile;
     }
 
 }

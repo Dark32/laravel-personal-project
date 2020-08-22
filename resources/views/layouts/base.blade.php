@@ -18,6 +18,8 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
+    @stack('scripts')
 </head>
 <body>
 <div id="app">
@@ -73,12 +75,16 @@
                                 ]])
                 @endif
             </div>
-            <div role="main" class="col-9">
+            <div role="main" class="col">
                 @yield('content')
             </div>
         </div>
     </div>
-
+        @hasSection('footer')
+            @yield('footer')
+        @else
+            @include('fragment.footer')
+        @endif
 </div>
 </body>
 </html>

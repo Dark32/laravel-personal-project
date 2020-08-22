@@ -1,5 +1,5 @@
 <nav id="sidebar" class="navbar navbar-expand-lg">
-    <ul class="nav flex-column list-unstyled">
+    <ul class="nav flex-column list-unstyled ">
         @foreach ($links as $link)
             @isset($link['links'])
                 <li class="nav-item">
@@ -18,7 +18,7 @@
                 @continue
             @endif
             @isset($link['href'])
-                <li class="nav-item">
+                <li class="nav-item ">
                     <a href="{{$link['href']}}">{{$link['label']}}</a>
                 </li>
             @else

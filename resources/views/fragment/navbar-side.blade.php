@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-light shadow-sm "
+<nav class="navbar navbar-expand-lg navbar-light shadow-sm mb-4"
      style="background-color: #e3f2fd;"  id="navbar-side">
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-side"
             aria-controls="navbar-side" aria-expanded="false" aria-label="Toggle navigation">

@@ -1,3 +1,7 @@
+$light-light-blue: #e3f2fd;
+$light-light-green: #e3fce3;
+$vh-list: 10, 20, 30, 40, 50, 60, 70, 80, 90;
+
 #header {
     height: 237px;
     padding-top: 10px;
@@ -8,9 +12,47 @@
     }
 }
 
-#navbar-top, #navbar-side {
-    .nav-item .nav-link {
-        padding-top: 0 !important;
-        padding-bottom: 0 !important;
+.bg-light-light-blue {
+    background-color: $light-light-blue !important;
+}
+
+.bg-light-light-green {
+    background-color: $light-light-green !important;
+}
+
+.list-group {
+    a.list-group-item-transparent.active {
+        background-color: white;
+        border-color: transparent;
+        color: black;
+
+    }
+}
+
+.min-vh-10 {
+    min-height: 10vh !important;
+}
+
+@each $vh in $vh-list {
+    .min-vh-#{$vh} {
+        min-height: #{$vh}vh !important;
+    }
+}
+
+.list-group-item-transparent {
+    color: #1b4b72;
+    background-color: transparent;
+
+    .list-group-item-action {
+        &:hover, &:focus {
+            color: #1b4b72;
+            background-color: transparent;
+        }
+
+        .active {
+            color: #fff;
+            background-color: transparent;
+            border-color: transparent;
+        }
     }
 }

@@ -8,17 +8,4 @@
     }
 }
 
-#navbar-top, #navbar-side {
-    .nav-item .nav-link {
-        padding-top: 0 !important;
-        padding-bottom: 0 !important;
-    }
-}
 
-.admin-sidebar{
-    #sidebar{
-        @extend .bg-dark;
-        min-height: 500px;
-        @extend .align-items-start
-    }
-}

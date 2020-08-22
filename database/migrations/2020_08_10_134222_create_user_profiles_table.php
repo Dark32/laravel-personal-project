@@ -14,11 +14,11 @@ class CreateUserProfilesTable extends Migration
     public function up()
     {
         Schema::create('user_profiles', function (Blueprint $table) {
-            $table->unsignedBigInteger('id');
+            $table->unsignedBigInteger('id')->unique();
             $table->foreign('id')->references('id')->on('users');
-            $table->string('nickname')->unique();
             $table->string('avatar')->nullable();
             $table->enum('sex', ['unset','male','female'])->default('unset');
+            $table->timestamps();
         });
     }
 
