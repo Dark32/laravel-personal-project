@@ -1,5 +1,8 @@
 <?php
 
+use App\Providers\RepositoryServiceProvider;
+use App\Providers\ViewServiceProvider;
+
 return [
 
     /*
@@ -178,6 +181,8 @@ return [
         App\Providers\PermissionServiceProvider::class,
 
         Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
+        RepositoryServiceProvider::class,
+        ViewServiceProvider::class,
     ],
 
     /*

@@ -20,6 +20,8 @@
                 <a class="list-group-item list-group-item-action" href="https://getbootstrap.com/docs/4.5/">bootstrap 4.5</a>
                 <a class="list-group-item list-group-item-action" href="https://icons.getbootstrap.com/">Bootstrap Icons</a>
                 <a class="list-group-item list-group-item-action" href="https://select2.org">select2</a>
+                <a class="list-group-item list-group-item-action" href="https://lodash.com/docs">lodash</a>
+                <a class="list-group-item list-group-item-action" href="https://fontawesome.com/icons">fontawesome</a>
             </div>
         </div>
     </div>

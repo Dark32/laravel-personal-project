@@ -22,9 +22,10 @@
                 </div><br/>
             @endif
             <form method="post" action="{{ route('admin.permission.update', $permission->id) }}">
+                @csrf
+                @method('PATCH')
                 <div class="form-group">
-                    @csrf
-                    @method('PATCH')
+
                     <label for="name">Название</label>
                     <input type="text" class="form-control" name="name" value="{{ $permission->name }}"/>
                     <label for="slug">Slug</label>

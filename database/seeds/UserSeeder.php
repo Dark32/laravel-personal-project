@@ -25,7 +25,9 @@ class UserSeeder extends Seeder
         $adminRoleDelete = Permission::whereSlug('admin.role.delete')->first();
         $adminPermList = Permission::whereSlug('admin.permission.list')->first();
         $adminPermEdit = Permission::whereSlug('admin.permission.edit')->first();
-        $adminActivityList = Permission::whereSlug('admin.activity.listt')->first();
+        $adminActivityList = Permission::whereSlug('admin.activity.list')->first();
+        $adminSocialBadgeList = Permission::whereSlug('admin.social-badge.list')->first();
+        $adminSocialBadgeEditt = Permission::whereSlug('admin.social-badge.edit')->first();
         if (!$admin){
             return;
         }
@@ -39,6 +41,8 @@ class UserSeeder extends Seeder
         $admin->permissions()->attach($adminRoleCreate);
         $admin->permissions()->attach($adminRoleDelete);
         $admin->permissions()->attach($adminActivityList);
+        $admin->permissions()->attach($adminSocialBadgeList);
+        $admin->permissions()->attach($adminSocialBadgeEditt);
         $admin->save();
         if (!$moderator){
             return;
@@ -48,6 +52,7 @@ class UserSeeder extends Seeder
         $moderator->permissions()->attach($adminRoleList);
         $moderator->permissions()->attach($adminPermList);
         $moderator->permissions()->attach($adminActivityList);
+        $moderator->permissions()->attach($adminSocialBadgeList);
         $moderator->save();
         $userAdmin = User::whereName('dark33')->first();
         if (!$userAdmin){

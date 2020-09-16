@@ -25,7 +25,7 @@ $vh-list: 10, 20, 30, 40, 50, 60, 70, 80, 90;
         background-color: white;
         border-color: transparent;
         color: black;
-
+        outline: none;
     }
 }
 
@@ -55,4 +55,50 @@ $vh-list: 10, 20, 30, 40, 50, 60, 70, 80, 90;
             border-color: transparent;
         }
     }
+}
+
+.social-badge {
+
+
+    i {
+        font-size: 25px;
+        width: 30px;
+        height: 30px;
+    }
+
+    .fa-vk, .fa-twitter {
+        color: #3f9ae5;
+    }
+
+    .fa-facebook, .fa-telegram, .fa-gitlab, .fa-steam, .fa-bitbucket {
+        color: #1d68a7;
+    }
+
+    .fa-instagram, .fa-gitlab {
+        color: orangered;
+    }
+
+    .fa-twitch {
+        color: darkviolet;
+    }
+
+    .fa-odnoklassniki {
+        color: coral;
+    }
+
+    .fa-discord {
+        color: #5d2bd3;
+    }
+
+    .fa-youtube {
+        color: red;
+    }
+
+    .fa-question-circle {
+        color: gray;
+    }
+}
+
+ul.list-striped li:nth-of-type(#{$table-striped-order}) {
+    background-color: $table-accent-bg;
 }

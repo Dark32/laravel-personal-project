@@ -12,7 +12,7 @@ class UserListController extends Controller
 {
     public function index()
     {
-        $users = User::with(['userProfile','roles','permissions'])->paginate(15);
+        $users = User::with(['userProfile','roles','permissions','userSocialNetworkBadges','userSocialNetworkBadges.socialBadge'])->paginate(15);
         return view('admin.user-list', ['users' => $users]);
     }
 

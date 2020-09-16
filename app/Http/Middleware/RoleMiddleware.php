@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\User;
 use Closure;
 
 class RoleMiddleware
@@ -16,10 +17,17 @@ class RoleMiddleware
      */
     public function handle($request, Closure $next, $role, $permission = null)
     {
-        if(!auth()->user()->hasRole($role)) {
+        if (! auth()->user() instanceof User) {
             abort(404);
         }
-        if($permission !== null && !auth()->user()->can($permission)) {
+        /**
+         * @var User $user
+         */
+        $user = auth()->user();
+        if (! $user->hasRole($role)) {
+            abort(404);
+        }
+        if ($permission !== null && ! $user->can($permission)) {
             abort(404);
         }
         return $next($request);

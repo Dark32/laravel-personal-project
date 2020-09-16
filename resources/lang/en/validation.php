@@ -148,4 +148,5 @@ return [
 
     'attributes' => [],
 
+    'snb' => 'The :attribute format is invalid.',
 ];

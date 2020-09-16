@@ -74,6 +74,8 @@
                                 ['href'=>'#', 'label'=>'test6'],
                                 ]])
                 @endif
+
+                    @include('fragment.online-users')
             </div>
             <div role="main" class="col">
                 @yield('content')

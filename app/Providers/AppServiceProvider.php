@@ -2,7 +2,10 @@
 
 namespace App\Providers;
 
+use App\SocialNetworkBadge;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rule;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -23,6 +26,14 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+
+        Validator::extend('snb', function ($attribute, $value, $parameters,  $validator) {
+            $data = $validator->getData();
+            $badge = SocialNetworkBadge::whereId($data['social_network_badge_id'])->select('pattern')->first();
+            $v = Validator::make($data, [
+                'link' =>  'required|regex:'.$badge->pattern
+            ]);
+            return $v->passes();
+        });
     }
 }

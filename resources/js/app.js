@@ -20,6 +20,7 @@ window.Vue = require('vue');
 
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 Vue.component('date-table-user-ip-activity', require('./components/DateTableUserIpActivity.vue').default);
+Vue.component('profile-edit', require('./components/ProfileEdit.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

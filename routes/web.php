@@ -3,6 +3,7 @@
 use App\Permission;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use Intervention\Image\Facades\Image;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,7 +25,12 @@ Route::get('/home', 'HomeController@index')->name('home')->middleware('verified'
 
 //----User profile----
 Route::get('/profile', 'UserProfileController@index')->name('users.profile')->middleware('auth');
-Route::get('/profile/{user:name}', 'UserProfileController@show')->name('users.show');
+Route::get('/user/{user:name}', 'UserProfileController@show')->name('users.show');
+Route::get('/users', 'UserProfileController@list')->name('users.list');
+Route::get('/profile/edit', 'UserProfileController@edit')->name('users.profile.edit')->middleware('auth');
+Route::get('/profile/vue', 'UserProfileController@vueEdit')->name('users.profile.vue')->middleware('auth');
+Route::post('/profile/update/name-and-pass', 'UserProfileController@updateNameAndPass')->name('users.profile.updateNameAndPass')->middleware('auth');
+
 //--------------------
 Route::group(['middleware' => ['auth','verified', 'can:admin.panel'],'prefix' => 'admin', 'namespace' => 'Admin','as'=>'admin.'], function () {
     Route::get('/', 'PanelController@index')->name('panel');
@@ -49,6 +55,11 @@ Route::group(['middleware' => ['auth','verified', 'can:admin.panel'],'prefix' =>
 
     Route::get('/activity/list/{column?}/{desc?}','UserIpActivityListController@index')->name('activity.list')->middleware('can:admin.activity.list');
     Route::get('/activity/list-vue','UserIpActivityListController@vue')->name('activity.list.vue')->middleware('can:admin.activity.list');
+
+    Route::resource('/social-network-badge', 'SocialNetworkBadgeController')->except('show');
+    Route::resource('/user-social-network-badge', 'UserSocialNetworkBadgesController')->except('show');
 });
 
+
+Route::get('/social-network-badge/find', 'SocialNetworkBadgeController@find')->name('snb.find');
 

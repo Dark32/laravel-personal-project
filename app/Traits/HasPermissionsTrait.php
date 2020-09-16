@@ -9,6 +9,7 @@ namespace App\Traits;
 
 use App\Permission;
 use App\Role;
+use Illuminate\Database\Eloquent\Builder;
 
 /**
  * Trait HasPermissionsTrait
@@ -45,23 +46,35 @@ trait HasPermissionsTrait
      * @param $permission
      * @return bool
      */
-    public function hasPermission($permission)
+    public function hasPermission(Permission $permission)
     {
-        return (bool) $this->permissions->where('slug', $permission->slug)->count();
+        return (bool) $this->permissions->contains($permission);
     }
     /**
      * @param $permission
      * @return bool
      */
-    public function hasPermissionTo($permission)
+    public function hasPermissionTo(Permission $permission)
     {
         return $this->hasPermissionThroughRole($permission) || $this->hasPermission($permission);
     }
+    public function hasPermissionThroughRole1(Permission $permission)
+    {
+        /**
+         * @var Builder $query
+         */
+        $query = $this->roles()->with('permissions');
+        $query->whereHas('permissions', function (Builder $query) use ($permission) {
+                $query->whereSlug($permission->slug);
+            return $query;
+        });
+        return $query->count()();
+    }
     /**
      * @param $permission
      * @return bool
      */
-    public function hasPermissionThroughRole($permission)
+    public function hasPermissionThroughRole(Permission $permission)
     {
         foreach ($permission->roles as $role){
             if($this->roles->contains($role)) {
@@ -71,45 +84,5 @@ trait HasPermissionsTrait
         return false;
     }
 
-    /**
-     * @param array $permissions
-     * @return mixed
-     */
-    protected function getAllPermissions(array $permissions)
-    {
-        return Permission::whereIn('slug',$permissions)->get();
-    }
-    /**
-     * @param mixed ...$permissions
-     * @return $this
-     */
-    public function givePermissionsTo(... $permissions)
-    {
-        $permissions = $this->getAllPermissions($permissions);
-        if($permissions === null) {
-            return $this;
-        }
-        $this->permissions()->saveMany($permissions);
-        return $this;
-    }
 
-    /**
-     * @param mixed ...$permissions
-     * @return $this
-     */
-    public function deletePermissions(... $permissions )
-    {
-        $permissions = $this->getAllPermissions($permissions);
-        $this->permissions()->detach($permissions);
-        return $this;
-    }
-    /**
-     * @param mixed ...$permissions
-     * @return HasPermissionsTrait
-     */
-    public function refreshPermissions(... $permissions )
-    {
-        $this->permissions()->detach();
-        return $this->givePermissionsTo($permissions);
-    }
 }

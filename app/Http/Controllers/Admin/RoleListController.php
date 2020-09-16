@@ -34,7 +34,7 @@ class RoleListController extends Controller
 
         $data = Role::select("id", "name", 'slug')
             ->where('slug', 'LIKE', "%{$term}%")
-            ->where('name', 'LIKE', "%{$term}%")
+            ->orWhere('name', 'LIKE', "%{$term}%")
             ->limit(15)
             ->get()
         ;

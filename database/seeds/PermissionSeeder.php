@@ -54,10 +54,12 @@ class PermissionSeeder extends Seeder
         $manageUser->description = '';
         $manageUser->save();
 
-        Permission::create([
+        Permission::insert([
                 ['slug' => 'admin.role.create', 'name' => 'Создать роль'],
                 ['slug' => 'admin.role.delete', 'name' => 'Удалить роль'],
                 ['slug' => 'admin.activity.list', 'name' => 'Список активности'],
+                ['slug' => 'admin.social-badge.list', 'name' => 'Список социальных сетей'],
+                ['slug' => 'admin.social-badge.edit', 'name' => 'Править список социальных сетей'],
             ]
         );
     }

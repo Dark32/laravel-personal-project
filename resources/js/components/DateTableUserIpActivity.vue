@@ -18,7 +18,7 @@
             </thead>
             <tbody>
             <tr>
-                <td v-for="(column, key) in columns"  class="text-break">
+                <td v-for="(column, key) in columns" class="text-break">
                     <input
                         v-if="column.filterable"
                         v-model="filter[column.column]"
@@ -30,7 +30,16 @@
             <tr class="" v-if="tableData.length === 0">
                 <td class="lead text-center" :colspan="columns.length + 1">No data found.</td>
             </tr>
-            <tr v-for="(data, key1) in tableData" :key="data.id" class="m-datatable__row" v-else  >
+            <tr class="" v-if='refresh'>
+                <td class="lead text-center" :colspan="columns.length + 1">
+                    <div class="text-center">
+                        <div class="spinner-border" role="status">
+                            <span class="sr-only">Loading...</span>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr v-for="(data, key1) in tableData" :key="data.id" class="m-datatable__row" v-else>
                 <td v-for="(value, key) in data" class="text-break">{{ value }}</td>
             </tr>
             </tbody>
@@ -75,7 +84,8 @@
                 perPage: 5,
                 sortedColumn: this.columns[0].column,
                 order: 'asc',
-                filter: {}
+                filter: {},
+                refresh: false,
             }
         },
         watch: {
@@ -127,9 +137,11 @@
                     per_page: this.per_page,
                 };
                 params = Object.assign(params, this.filter);
+                this.refresh = true;
                 axios.get(this.url, {params: params}).then(({data}) => {
                     this.pagination = data;
                     this.tableData = data.data
+                    this.refresh = false;
                 }).catch(error => this.tableData = [])
             },
             /**

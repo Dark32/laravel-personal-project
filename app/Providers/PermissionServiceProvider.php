@@ -31,7 +31,8 @@ class PermissionServiceProvider extends ServiceProvider
                 Gate::define($permission->slug, function (User $user) use ($permission) {
                     return $user->hasPermissionTo($permission);
                 });
-            });
+            })
+            ;
         } catch (\Exception $e) {
             report($e);
             return false;
