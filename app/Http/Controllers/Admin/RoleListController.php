@@ -4,8 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\RoleEditRequest;
-use App\Role;
-use Illuminate\Foundation\Http\FormRequest;
+use App\Models\Role;
 use Illuminate\Http\Request;
 
 class RoleListController extends Controller

@@ -2,7 +2,7 @@
 
 namespace App\Providers;
 
-use App\SocialNetworkBadge;
+use App\Models\SocialNetworkBadge;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;

@@ -2,12 +2,13 @@
 
 namespace App\Listeners;
 
-use App\User;
-use App\UserIpActivity;
+use App\Models\User;
+use App\Models\UserIpActivity;
 use Illuminate\Auth\Events\Failed;
 use Illuminate\Auth\Events\Login;
 use Illuminate\Auth\Events\Logout;
 use Illuminate\Auth\Events\Registered;
+use Illuminate\Events\Dispatcher;
 
 class UserIpActivitySubscriber
 {
@@ -87,7 +88,7 @@ class UserIpActivitySubscriber
     /**
      * Register the listeners for the subscriber.
      *
-     * @param \Illuminate\Events\Dispatcher $events
+     * @param Dispatcher $events
      */
     public function subscribe($events)
     {

@@ -13,7 +13,7 @@ class UserEditRequest extends FormRequest
      */
     public function authorize()
     {
-        return $this->user()->can('admin.user.edit');;
+        return $this->user()->can('admin.user.edit');
     }
 
     /**

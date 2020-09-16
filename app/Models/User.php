@@ -1,23 +1,22 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use App\Traits\HasPermissionsTrait;
 use Eloquent;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\DatabaseNotification;
 use Illuminate\Notifications\DatabaseNotificationCollection;
 use Illuminate\Notifications\Notifiable;
-use App\UserProfile;
 use Illuminate\Support\Carbon;
 
 /**
- * Class User
+ * App\Models\User
  *
- * @package App
  * @property int $id
  * @property string $name
  * @property string $email
@@ -26,13 +25,19 @@ use Illuminate\Support\Carbon;
  * @property string|null $remember_token
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
+ * @property string|null $last_active
  * @property-read DatabaseNotificationCollection|DatabaseNotification[] $notifications
  * @property-read int|null $notifications_count
- * @property-read Collection|\App\Permission[] $permissions
+ * @property-read Collection|Permission[] $permissions
  * @property-read int|null $permissions_count
- * @property-read \App\UserProfile|null $userProfile
- * @property-read Collection|\App\Role[] $roles
+ * @property-read Collection|Role[] $roles
  * @property-read int|null $roles_count
+ * @property-read Collection|Session[] $sessions
+ * @property-read int|null $sessions_count
+ * @property-read UserIpActivity|null $userIpActivity
+ * @property-read UserProfile $userProfile
+ * @property-read Collection|UserSocialNetworkBadge[] $userSocialNetworkBadges
+ * @property-read int|null $user_social_network_badges_count
  * @method static Builder|User newModelQuery()
  * @method static Builder|User newQuery()
  * @method static Builder|User query()
@@ -40,35 +45,24 @@ use Illuminate\Support\Carbon;
  * @method static Builder|User whereEmail($value)
  * @method static Builder|User whereEmailVerifiedAt($value)
  * @method static Builder|User whereId($value)
+ * @method static Builder|User whereLastActive($value)
  * @method static Builder|User whereName($value)
  * @method static Builder|User wherePassword($value)
- * @method static Builder|User whereRegistrationIp($value)
  * @method static Builder|User whereRememberToken($value)
  * @method static Builder|User whereUpdatedAt($value)
  * @mixin Eloquent
- * @property-read UserIpActivity|null $userIpActivity
- * @property-read Collection|UserSocialNetworkBadge[] $userSocialNetworkBadges
- * @property-read int|null $user_social_network_badges_count
- * @property string|null $lastActive
- * @method static Builder|User whereLastActive($value)
- * @property string|null $last_active
- * @property-read Collection|Session[] $sessions
- * @property-read int|null $sessions_count
  */
 class User extends Authenticatable implements MustVerifyEmail
 {
-    use Notifiable;
+    use HasFactory, Notifiable;
     use HasPermissionsTrait;
-
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'name',
-        'email',
-        'password',
+        'name', 'email', 'password',
     ];
 
     /**
@@ -77,8 +71,7 @@ class User extends Authenticatable implements MustVerifyEmail
      * @var array
      */
     protected $hidden = [
-        'password',
-        'remember_token',
+        'password', 'remember_token',
     ];
 
     /**
@@ -89,7 +82,6 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-
     public function userProfile()
     {
         return $this->hasOne(UserProfile::class, 'id')->withDefault(

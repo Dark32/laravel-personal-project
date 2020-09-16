@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 @php
-    use App\User;
+    use App\Models\User;
     /**
      * @var \App\Permission[] $permissions
      */

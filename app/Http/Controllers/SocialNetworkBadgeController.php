@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 
-use App\SocialNetworkBadge;
+use App\Models\SocialNetworkBadge;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 

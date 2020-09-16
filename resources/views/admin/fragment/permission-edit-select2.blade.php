@@ -1,8 +1,8 @@
 @php
-    use App\Permission;
+
         /**
          * @var Permission[] $permissions
-         */
+         */use App\Models\Permission;
 @endphp
 <div class="form-group">
     <label for="permission_list">Права</label>

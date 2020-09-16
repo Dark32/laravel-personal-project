@@ -1,6 +1,5 @@
 @extends('layouts.admin')
 @php
-    use App\Role;
 @endphp
 @section('content')
 

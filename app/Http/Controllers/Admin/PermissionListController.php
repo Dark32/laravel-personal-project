@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\PermissionEditRequest;
-use App\Permission;
+use App\Models\Permission;
 use Illuminate\Http\Request;
 
 class PermissionListController extends Controller
@@ -17,7 +17,7 @@ class PermissionListController extends Controller
 
     public function edit(Permission $permission)
     {
-        return view('admin.permission-edit', ['permission' => $permission]);;
+        return view('admin.permission-edit', ['permission' => $permission]);
     }
 
     public function find(Request $request)

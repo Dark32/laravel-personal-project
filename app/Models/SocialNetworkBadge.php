@@ -1,9 +1,11 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
+use Eloquent;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Carbon;
 
 /**
  * App\SocialNetworkBadge
@@ -11,10 +13,10 @@ use Illuminate\Database\Eloquent\Model;
  * @method static Builder|SocialNetworkBadge newModelQuery()
  * @method static Builder|SocialNetworkBadge newQuery()
  * @method static Builder|SocialNetworkBadge query()
- * @mixin \Eloquent
+ * @mixin Eloquent
  * @property int $id
- * @property \Illuminate\Support\Carbon|null $created_at
- * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
  * @property string $slug
  * @property string $name
  * @property string|null $description

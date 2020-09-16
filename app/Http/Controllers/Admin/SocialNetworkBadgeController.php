@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\SocialNetworkBadge;
+
+use App\Models\SocialNetworkBadge;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
 
 class SocialNetworkBadgeController extends Controller
@@ -18,7 +20,7 @@ class SocialNetworkBadgeController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function index()
     {
@@ -29,7 +31,7 @@ class SocialNetworkBadgeController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function create()
     {
@@ -39,8 +41,8 @@ class SocialNetworkBadgeController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @return Response
      */
     public function store(Request $request)
     {
@@ -59,7 +61,7 @@ class SocialNetworkBadgeController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param \App\SocialNetworkBadge $socialNetworkBadge
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function edit(SocialNetworkBadge $socialNetworkBadge)
     {
@@ -69,9 +71,9 @@ class SocialNetworkBadgeController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param \Illuminate\Http\Request $request
+     * @param Request $request
      * @param \App\SocialNetworkBadge $socialNetworkBadge
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function update(Request $request, SocialNetworkBadge $socialNetworkBadge)
     {
@@ -89,7 +91,7 @@ class SocialNetworkBadgeController extends Controller
      * Remove the specified resource from storage.
      *
      * @param \App\SocialNetworkBadge $socialNetworkBadge
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function destroy(SocialNetworkBadge $socialNetworkBadge)
     {

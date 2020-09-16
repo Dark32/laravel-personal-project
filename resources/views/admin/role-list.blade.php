@@ -1,9 +1,8 @@
 @extends('layouts.admin')
 @php
-    use App\Role;
     /**
      * @var Role[] $roles
-     */
+     */use App\Models\Role;
 @endphp
 @section('content')
 

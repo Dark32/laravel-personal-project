@@ -5,9 +5,10 @@
  * Mail 10.42@mail.ru
  */
 
-namespace App;
+namespace App\Models;
 
 use Carbon\Carbon;
+use Eloquent;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 
@@ -33,7 +34,7 @@ use Illuminate\Database\Eloquent\Builder;
  * @method static Builder|Session wherePayload($value)
  * @method static Builder|Session whereUserAgent($value)
  * @method static Builder|Session whereUserId($value)
- * @mixin \Eloquent
+ * @mixin Eloquent
  */
 class Session extends Model
 {

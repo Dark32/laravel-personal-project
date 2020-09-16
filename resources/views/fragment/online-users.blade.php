@@ -4,7 +4,7 @@
      * @var int $userOnlineCount
      * @var int $guestOnlineCount
     */
-use App\User;
+use App\Models\User;
 @endphp
 <div class="card  border-0 bg-light">
     <div class="card-header rounded-0">

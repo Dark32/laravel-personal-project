@@ -1,6 +1,6 @@
 <?php
 
-use App\SocialNetworkBadge;
+use App\Models\SocialNetworkBadge;
 use Illuminate\Database\Seeder;
 
 class SocialBadgeSeeder extends Seeder

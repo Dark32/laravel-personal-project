@@ -1,8 +1,8 @@
 @php
-    use App\Role;
+
     /**
      * @var Role[] $roles
-     */
+     */use App\Models\Role;
 @endphp
 <div class="form-group">
     <label for="role">Роли</label>
